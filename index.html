@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The English Flight - Assessment & Enrollment</title>
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* CONTAINER STYLING */
+    .card-container {
+      background: linear-gradient(145deg, #1e1e1e, #181818);
+      border: 2px solid #d4af37;
+      border-radius: 16px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      padding: 40px 30px;
+    }
+
+    /* HEADER SECTION */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand-title {
+      color: #ffffff;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .brand-subtitle {
+      color: #d4af37;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-top: -5px;
+    }
+
+    .tagline {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .tagline span {
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      color: #d4af37;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #333;
+      padding-bottom: 8px;
+    }
+
+    /* STUDENT FORM */
+    .student-info {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .student-info input {
+      flex: 1;
+      min-width: 240px;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #2a2a2a;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .student-info input:focus {
+      border-color: #d4af37;
+    }
+
+    /* QUIZ SECTION */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .question-card {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      padding: 15px 20px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .question-card.easy { border-left: 4px solid #4caf50; }
+    .question-card.medium { border-left: 4px solid #ff9800; }
+    .question-card.hard { border-left: 4px solid #f44336; }
+
+    /* FEEDBACK HIGHLIGHTS */
+    .question-card.correct-answer {
+      border: 1px solid #4caf50;
+      background-color: rgba(76, 175, 80, 0.08);
+    }
+
+    .question-card.wrong-answer {
+      border: 1px solid #f44336;
+      background-color: rgba(244, 67, 54, 0.08);
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+    .badge-easy { background: #1b5e20; color: #a5d6a7; }
+    .badge-medium { background: #e65100; color: #ffe0b2; }
+    .badge-hard { background: #b71c1c; color: #ffcdd2; }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      color: #ccc;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .option-label:hover {
+      color: #fff;
+    }
+
+    .wrong-choice {
+      color: #ff8a80;
+      font-weight: bold;
+    }
+
+    .correct-choice {
+      color: #b9f6ca;
+      font-weight: bold;
+    }
+
+    .feedback-note {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* SUBMIT BUTTON */
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d4af37, #aa820a);
+      color: #000;
+      font-weight: 800;
+      font-size: 1.2rem;
+      padding: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #f3cf55, #d4af37);
+    }
+
+    /* SCORE DISPLAY RESULT BOX */
+    .result-box {
+      display: none;
+      background: rgba(212, 175, 55, 0.1);
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .result-box h3 {
+      font-size: 1.8rem;
+      color: #d4af37;
+      margin-bottom: 5px;
+    }
+
+    .result-box p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-info {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 15px;
+      font-size: 0.95rem;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
+
+    .contact-info a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      color: #d4af37;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="header">
+      <h1 class="brand-title">THE ENGLISH</h1>
+      <h2 class="brand-subtitle">— FLIGHT —</h2>
+      <p class="tagline">ELEVATE YOUR <span>ENGLISH</span>, TRANSFORM YOUR <span>FUTURE</span>.</p>
+    </div>
+
+    <form id="assessmentForm">
+      <h3 class="section-title">Step 1: Student Details</h3>
+      <div class="student-info">
+        <input type="text" id="userName" placeholder="Full Name" required />
+        <input type="tel" id="userPhone" placeholder="Phone Number" required />
+      </div>
+
+      <h3 class="section-title">Step 2: English Proficiency Assessment</h3>
+      <div class="quiz-container">
+
+        <div class="question-card easy" id="qcard1">
+          <div class="question-text">1. Choose the correct sentence: <span class="badge badge-easy">Easy</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q1" value="A" required> She go to school every day.</label>
+            <label class="option-label"><input type="radio" name="q1" value="B"> She goes to school every day.</label>
+            <label class="option-label"><input type="radio" name="q1" value="C"> She going to school every day.</label>
+          </div>
+          <div class="feedback-note" id="fb1"></div>
+        </div>
+
+        <div class="question-card easy" id="qcard2">
+          <div class="question-text">2. Fill in the blank: "I have been living here ___ 2018." <span class="badge badge-easy">Easy</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q2" value="A" required> for</label>
+            <label class="option-label"><input type="radio" name="q2" value="B"> since</label>
+            <label class="option-label"><input type="radio" name="q2" value="C"> from</label>
+          </div>
+          <div class="feedback-note" id="fb2"></div>
+        </div>
+
+        <div class="question-card easy" id="qcard3">
+          <div class="question-text">3. Select the opposite of "Ancient": <span class="badge badge-easy">Easy</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q3" value="A" required> Old</label>
+            <label class="option-label"><input type="radio" name="q3" value="B"> Modern</label>
+            <label class="option-label"><input type="radio" name="q3" value="C"> Past</label>
+          </div>
+          <div class="feedback-note" id="fb3"></div>
+        </div>
+
+        <div class="question-card easy" id="qcard4">
+          <div class="question-text">4. Identify the noun: "They walked slowly past the quiet river." <span class="badge badge-easy">Easy</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q4" value="A" required> slowly</label>
+            <label class="option-label"><input type="radio" name="q4" value="B"> walked</label>
+            <label class="option-label"><input type="radio" name="q4" value="C"> river</label>
+          </div>
+          <div class="feedback-note" id="fb4"></div>
+        </div>
+
+        <div class="question-card easy" id="qcard5">
+          <div class="question-text">5. Fill in the blank: "They ___ playing football right now." <span class="badge badge-easy">Easy</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q5" value="A" required> is</label>
+            <label class="option-label"><input type="radio" name="q5" value="B"> are</label>
+            <label class="option-label"><input type="radio" name="q5" value="C"> was</label>
+          </div>
+          <div class="feedback-note" id="fb5"></div>
+        </div>
+
+        <div class="question-card medium" id="qcard6">
+          <div class="question-text">6. Select the correctly punctuated conditional sentence: <span class="badge badge-medium">Medium</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q6" value="A" required> If I had known, I would have helped you.</label>
+            <label class="option-label"><input type="radio" name="q6" value="B"> If I knew, I would had helped you.</label>
+            <label class="option-label"><input type="radio" name="q6" value="C"> If I have known, I would help you.</label>
+          </div>
+          <div class="feedback-note" id="fb6"></div>
+        </div>
+
+        <div class="question-card medium" id="qcard7">
+          <div class="question-text">7. What is the passive form of: "The manager approved the proposal."? <span class="badge badge-medium">Medium</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q7" value="A" required> The proposal was approved by the manager.</label>
+            <label class="option-label"><input type="radio" name="q7" value="B"> The proposal is approved by the manager.</label>
+            <label class="option-label"><input type="radio" name="q7" value="C"> The manager was approving the proposal.</label>
+          </div>
+          <div class="feedback-note" id="fb7"></div>
+        </div>
+
+        <div class="question-card medium" id="qcard8">
+          <div class="question-text">8. Choose the word closest in meaning to "Lucid": <span class="badge badge-medium">Medium</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q8" value="A" required> Confusing</label>
+            <label class="option-label"><input type="radio" name="q8" value="B"> Clear and understandable</label>
+            <label class="option-label"><input type="radio" name="q8" value="C"> Bright and shiny</label>
+          </div>
+          <div class="feedback-note" id="fb8"></div>
+        </div>
+
+        <div class="question-card hard" id="qcard9">
+          <div class="question-text">9. Identify the sentence with the correct subjunctive mood: <span class="badge badge-hard">Hard</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q9" value="A" required> I demand that he signs the agreement immediately.</label>
+            <label class="option-label"><input type="radio" name="q9" value="B"> I demand that he sign the agreement immediately.</label>
+            <label class="option-label"><input type="radio" name="q9" value="C"> I demand that he signed the agreement immediately.</label>
+          </div>
+          <div class="feedback-note" id="fb9"></div>
+        </div>
+
+        <div class="question-card hard" id="qcard10">
+          <div class="question-text">10. Choose the word that best fits: "Despite the crisis, her resolve remained ___." <span class="badge badge-hard">Hard</span></div>
+          <div class="options-group">
+            <label class="option-label"><input type="radio" name="q10" value="A" required> Ephemeral</label>
+            <label class="option-label"><input type="radio" name="q10" value="B"> Indefatigable</label>
+            <label class="option-label"><input type="radio" name="q10" value="C"> Ambiguous</label>
+          </div>
+          <div class="feedback-note" id="fb10"></div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Test & Send Report</button>
+    </form>
+
+    <div id="resultBox" class="result-box">
+      <h3>Your Score: <span id="scoreText"></span> / 10</h3>
+      <p id="levelText"></p>
+      <p style="font-size: 0.9rem; color: #aaa;">Your wrong answers have been highlighted above in red. Your email client will now open to submit your report to the instructor.</p>
+    </div>
+
+    <div class="contact-info">
+      <div>📞 <a href="tel:9640587430">9640587430</a></div>
+      <div>✉️ <a href="mailto:tef4englishworld@gmail.com">tef4englishworld@gmail.com</a></div>
+      <div>🌐 ONLINE INSTITUTE | LEARN FROM ANYWHERE</div>
+    </div>
+  </div>
+
+  <script>
+    // Answer Key
+    const correctAnswers = {
+      q1: 'B', q2: 'B', q3: 'B', q4: 'C', q5: 'B',
+      q6: 'A', q7: 'A', q8: 'B', q9: 'B', q10: 'B'
+    };
+
+    document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('userName').value;
+      const phone = document.getElementById('userPhone').value;
+      let score = 0;
+      let emailBreakdown = "";
+
+      // Check each question
+      for (let i = 1; i <= 10; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        const userChoice = selected ? selected.value : "None";
+        const correctChoice = correctAnswers[`q${i}`];
+        const card = document.getElementById(`qcard${i}`);
+        const fb = document.getElementById(`fb${i}`);
+
+        if (userChoice === correctChoice) {
+          score++;
+          card.classList.add('correct-answer');
+          card.classList.remove('wrong-answer');
+          fb.style.display = 'block';
+          fb.style.color = '#b9f6ca';
+          fb.innerText = '✔ Correct';
+          emailBreakdown += `Q${i}: Correct (Chosen: ${userChoice})\n`;
+        } else {
+          card.classList.add('wrong-answer');
+          card.classList.remove('correct-answer');
+          fb.style.display = 'block';
+          fb.style.color = '#ff8a80';
+          fb.innerText = `✖ Incorrect (Selected Option: ${userChoice} | Correct Option: ${correctChoice})`;
+          emailBreakdown += `Q${i}: INCORRECT (Selected: ${userChoice} | Correct: ${correctChoice})\n`;
+        }
+      }
+
+      // Determine level report dynamically
+      let level = "";
+      let recommendations = "";
+
+      if (score <= 4) {
+        level = "Beginner Level (A1/A2)";
+        recommendations = "Needs foundational grammar, vocabulary building, and basic sentence structuring.";
+      } else if (score <= 7) {
+        level = "Intermediate Level (B1/B2)";
+        recommendations = "Good foundation. Needs refinement in workplace fluency, complex grammar, and speaking confidence.";
+      } else {
+        level = "Advanced Level (C1/C2)";
+        recommendations = "Strong proficiency. Ready for specialized test prep (IELTS/TOEFL/PTE) or high-level business communication.";
+      }
+
+      // Show result on site
+      document.getElementById('scoreText').innerText = score;
+      document.getElementById('levelText').innerText = `Level: ${level}`;
+      document.getElementById('resultBox').style.display = 'block';
+      document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+
+      // Generate Detailed Email for the Owner
+      const ownerEmail = "tef4englishworld@gmail.com";
+      const subject = encodeURIComponent(`Assessment Report: ${name} (${score}/10)`);
+      
+      const bodyText = 
+`STUDENT ENGLISH ASSESSMENT REPORT
+----------------------------------
+Student Name: ${name}
+Phone Number: ${phone}
+
+TEST RESULTS SUMMARY:
+Overall Score: ${score} / 10
+Assessed English Level: ${level}
+
+RECOMMENDED FOCUS:
+${recommendations}
+
+----------------------------------
+ITEMIZED QUESTION BREAKDOWN:
+${emailBreakdown}
+----------------------------------
+This report was generated automatically via The English Flight Diagnostic Portal.`;
+
+      const mailtoLink = `mailto:${ownerEmail}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+
+      // Open email client
+      setTimeout(() => {
+        window.location.href = mailtoLink;
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
